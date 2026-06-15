@@ -640,3 +640,79 @@ Al finalizar, se tiene un sistema local compuesto por:
 - Evidencia blockchain para verificar autenticidad e integridad.
 
 Este proyecto sirve como base para continuar en las siguientes semanas con Kubernetes local, persistencia con PVC, jobs de despliegue de contratos y simulacion multi-cloud con clusters separados.
+
+## 19. Subir Imagenes A Docker Hub
+
+En esta practica se pueden subir a Docker Hub las imagenes propias del proyecto:
+
+- `contract-tools`: imagen con Hardhat, contrato y scripts.
+- `api-universidad`: imagen con FastAPI y Web3.
+
+No se suben imagenes oficiales como `postgres` o `trufflesuite/ganache`, porque esas ya existen en Docker Hub.
+
+Primero iniciar sesion:
+
+```powershell
+docker login
+```
+
+Reemplazar `TU_USUARIO_DOCKERHUB` por el usuario real de Docker Hub.
+
+Construir la imagen de blockchain:
+
+```powershell
+docker build -t TU_USUARIO_DOCKERHUB/registro-titulos-blockchain:1.0 ./blockchain
+```
+
+Subir la imagen de blockchain:
+
+```powershell
+docker push TU_USUARIO_DOCKERHUB/registro-titulos-blockchain:1.0
+```
+
+Construir la imagen de la API:
+
+```powershell
+docker build -t TU_USUARIO_DOCKERHUB/api-universidad:1.0 ./api-universidad
+```
+
+Subir la imagen de la API:
+
+```powershell
+docker push TU_USUARIO_DOCKERHUB/api-universidad:1.0
+```
+
+Opcionalmente se puede publicar tambien una etiqueta `latest`:
+
+```powershell
+docker tag TU_USUARIO_DOCKERHUB/registro-titulos-blockchain:1.0 TU_USUARIO_DOCKERHUB/registro-titulos-blockchain:latest
+docker tag TU_USUARIO_DOCKERHUB/api-universidad:1.0 TU_USUARIO_DOCKERHUB/api-universidad:latest
+docker push TU_USUARIO_DOCKERHUB/registro-titulos-blockchain:latest
+docker push TU_USUARIO_DOCKERHUB/api-universidad:latest
+```
+
+Para usar esas imagenes publicadas en lugar de construir localmente, se podria cambiar `docker-compose.yml` de forma conceptual:
+
+```yaml
+contract-tools:
+  image: TU_USUARIO_DOCKERHUB/registro-titulos-blockchain:1.0
+
+api-universidad:
+  image: TU_USUARIO_DOCKERHUB/api-universidad:1.0
+```
+
+En ese caso se elimina o comenta la seccion `build` de esos servicios.
+
+Verificar imagenes locales:
+
+```powershell
+docker images
+```
+
+Probar una imagen subida:
+
+```powershell
+docker pull TU_USUARIO_DOCKERHUB/api-universidad:1.0
+```
+
+Nota importante: las imagenes no deben contener el archivo `.env`. Las variables sensibles se pasan en tiempo de ejecucion con `env_file` o variables de entorno.
