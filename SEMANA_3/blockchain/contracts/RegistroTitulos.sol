@@ -18,10 +18,8 @@ contract RegistroTitulos{
         address indexed universidad
     );
 
-    function registrarTitulo(
-        bytes32 codigoTituloHash,
-        bytes32 documentoHash
-    ) public {
+    function registrarTitulo(bytes32 codigoTituloHash, bytes32 documentoHash) public
+    {
         require(!titulos[codigoTituloHash].existe, "El titulo ya existe");
 
         titulos[codigoTituloHash] = Titulo({
