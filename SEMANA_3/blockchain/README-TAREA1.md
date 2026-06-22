@@ -1,6 +1,6 @@
 # Semana 3 - Registro de Títulos Blockchain con Docker
 
-## Autor
+## Estudiante
 
 **Giovanny Cholca**
 
@@ -24,7 +24,7 @@ La solución permite:
 
 # Repositorio GitHub
 
-Repositorio base proporcionado para la práctica:
+Repositorio base proporcionado para la práctica se realizo un fork del repositorio de github:
 
 https://github.com/GCBlockChainCloud/administracion_cloud_utpl/tree/main/SEMANA_3/blockchain
 
