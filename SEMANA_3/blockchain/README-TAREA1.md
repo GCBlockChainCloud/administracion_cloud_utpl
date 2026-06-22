@@ -8,7 +8,7 @@ Práctica desarrollada para la asignatura de Administración Cloud, basada en el
 
 ## Repositorio de referencia
 
-Proyecto original proporcionado por el docente:
+Del Proyecto original proporcionado por el docente se realizo un fork de la cuenta de GitHub:
 
 https://github.com/GCBlockChainCloud/administracion_cloud_utpl/tree/main/SEMANA_3/blockchain
 
